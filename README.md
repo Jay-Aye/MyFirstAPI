@@ -15,4 +15,4 @@ module.exports = {
 
 Database collection will generate as 'notes' with a 'id', 'title' and 'text' field
 
-MongoDB Deplotment on https://mlab.com/ . For Development only.
+MongoDB Deployment on https://mlab.com/ . For Development only.
