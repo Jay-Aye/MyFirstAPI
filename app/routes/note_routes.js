@@ -1,5 +1,7 @@
 var ObjectID = require('mongodb').ObjectID;
+
 module.exports = function(app, db) {
+  // Read One
   app.get('/notes/:id', (req, res) => {
     const id = req.params.id;
     const details = { '_id': new ObjectID(id) };
@@ -12,7 +14,9 @@ module.exports = function(app, db) {
     });
   });
 
+  // Create
   app.post('/notes', (req, res) => {
+    // rename note to name of collection, add in fields required in collection and link
     const note = { text: req.body.body, title: req.body.title };
     db.collection('notes').insert(note, (err, result) => {
       if (err) {
@@ -23,6 +27,7 @@ module.exports = function(app, db) {
     });
   });
 
+  // Delete
   app.delete('/notes/:id', (req, res) => {
     const id = req.params.id;
     const details = { '_id': new ObjectID(id) };
@@ -35,9 +40,11 @@ module.exports = function(app, db) {
     });
   });
 
+  // Update
   app.put('/notes/:id', (req, res) => {
     const id = req.params.id;
     const details = { '_id': new ObjectID(id) };
+    // rename note to name of collection, add in fields required in collection and link
     const note = { text: req.body.body, title: req.body.title };
     db.collection('notes').update(details, note, (err, result) => {
       if (err) {
